@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/CharactersListFragment">
+
+    <fragment
+        android:id="@+id/CharactersListFragment"
+        android:name="com.danielpasser.rickandmorty.ui.characterslist.CharactersListFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_characters_list">
+
+        <action
+            android:id="@+id/action_CharactersListFragment_to_CharacterFragment"
+            app:destination="@id/CharacterFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/CharacterFragment"
+        android:name="com.danielpasser.rickandmorty.ui.CharacterFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_character">
+
+        <action
+            android:id="@+id/action_CharacterFragment_to_CharactersListFragment"
+            app:destination="@id/CharactersListFragment" />
+        <argument
+            android:name="character"
+            app:argType="com.danielpasser.rickandmorty.model.Character" />
+
+    </fragment>
+</navigation>
