@@ -13,11 +13,6 @@ class CharacterRepository @Inject constructor(
     private val retrofit: Api,
 ) {
 
-//     suspend fun getAllCharacters(): Flow<PagingData<Character>> = Pager(
-//        config = PagingConfig(pageSize = 20, prefetchDistance = 2),
-//        pagingSourceFactory = { CharactersPaging(retrofit) }
-//    ).flow
-
     suspend fun getAllCharacters(): Flow<PagingData<Character>> =
         Pager(config = PagingConfig(pageSize = 20, prefetchDistance = 2),
             pagingSourceFactory = { CharactersPaging(retrofit) }
