@@ -6,21 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import com.danielpasser.rickandmorty.model.Character
-import com.danielpasser.rickandmorty.model.Response
+
 import com.danielpasser.rickandmorty.repo.CharacterRepository
-import com.danielpasser.rickandmorty.repo.Repository
-import com.danielpasser.rickandmorty.utils.DataState
+
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CharactersListViewModel @Inject constructor(
-    private val repository: Repository,
     private val characterRepository: CharacterRepository
 ) : ViewModel() {
 
@@ -35,17 +32,14 @@ class CharactersListViewModel @Inject constructor(
         getAllCharacters()
     }
 
-
-
     private fun getAllCharacters() {
         viewModelScope.launch {
             try {
                 _charactersFlow = characterRepository.getAllCharacters()
 
             } catch (ex: Exception) {
-               _errorMessage.postValue( ex.message)
+                _errorMessage.postValue(ex.message)
             }
-
         }
     }
 
